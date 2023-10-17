@@ -14,11 +14,17 @@ request: {}
 response: {}
 
 //post diary
+
+
 POST /sessions
+
+
 request:{
 "user":"",
 "content":""
 }
+
+
 response:
 {
     "Diaryid": "",
@@ -29,9 +35,17 @@ response:
     ],
     "createdAt": "2023-10-17T11:03:09.631Z"
 }
+
+
 //get diary
+
+
 GET /sessions/:sessionId
+
+
 request:{}
+
+
 response:{
       Diaryid: ,
       user: ,
