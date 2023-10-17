@@ -2,8 +2,6 @@ const OpenAI = require('openai')
 
 const transformMessages = require('./helper')
 
-require('dotenv').config()
-
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
 // 傳入 messages，取得 OpenAI API 的回覆

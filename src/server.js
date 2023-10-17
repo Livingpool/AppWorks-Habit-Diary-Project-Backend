@@ -2,11 +2,14 @@ const express = require('express')
 //const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
-const api = require("./api")
 
 const mongoose = require('mongoose')
 
 require('dotenv').config()
+
+const api= require("./api_postget")
+const api_postget= require("./api_postget")
+
 
 const uri = process.env.MONGO_URI
 const options = {
@@ -31,6 +34,7 @@ const PORT = 3000
 app.use(express.json())
 app.use(cors())
 app.use('/', api)
+app.use('/post',api_postget)
 
 // 如果需要設置CORS
 // const corsOptions = {
