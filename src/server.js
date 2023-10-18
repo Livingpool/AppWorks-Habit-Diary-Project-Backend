@@ -7,8 +7,8 @@ const mongoose = require('mongoose')
 
 require('dotenv').config()
 
-const api= require("./api_postget")
-const api_postget= require("./api_postget")
+
+const api_sunny= require("./api_sunny")
 
 
 const uri = process.env.MONGO_URI
@@ -33,8 +33,8 @@ const app = express()
 const PORT = 3000
 app.use(express.json())
 app.use(cors())
-app.use('/', api)
-app.use('/post',api_postget)
+
+app.use('/post',api_sunny)
 
 // 如果需要設置CORS
 // const corsOptions = {
