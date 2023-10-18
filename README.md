@@ -16,10 +16,11 @@ response: {}
 //post diary
 
 
-POST /sessions
+### POST /sessions
 
 
-request:{
+request:
+{
 "user":"",
 "content":""
 }
@@ -40,13 +41,15 @@ response:
 //get diary
 
 
-GET /sessions/:sessionId
+### GET /sessions/:sessionId
 
 
-request:{}
+request:
+{}
 
 
-response:{
+response:
+{
       Diaryid: ,
       user: ,
       AIresponse: ,
@@ -54,4 +57,15 @@ response:{
       createdAt: ,
 }
 
+### POST /sessions/:sessionId/content
 
+request:
+{
+  "user": "",
+  "content": ""
+}
+
+response:
+{
+  "AIresponse": ""
+}
