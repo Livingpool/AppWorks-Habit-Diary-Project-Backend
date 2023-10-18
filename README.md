@@ -15,8 +15,10 @@ response: {}
 
 //post diary
 
+<br>
+<br>
 
-### POST /sessions
+## POST /sessions
 
 
 request:
@@ -40,8 +42,10 @@ response:
 
 //get diary
 
+<br>
+<br>
 
-### GET /sessions/:sessionId
+## GET /sessions/:sessionId
 
 
 request:
@@ -57,7 +61,10 @@ response:
       createdAt: ,
 }
 
-### POST /sessions/:sessionId/content
+<br>
+<br>
+
+## POST /sessions/:sessionId/content
 
 request:
 {
