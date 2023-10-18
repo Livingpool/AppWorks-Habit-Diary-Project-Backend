@@ -19,6 +19,5 @@
     "mongoose": "^7.5.2",
     "nodemon": "^3.0.1",
     "openai": "^4.12.1"
-  },
-  "devDependencies": {}
+  }
 }
