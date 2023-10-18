@@ -11,19 +11,12 @@ router.post('/sessions', async (req, res) => {
   }
 
   try {
-    let session = await Session.findOne({ user });
-
-    if (!session) {
-      // If the session doesn't exist, create a new one
-      session = new Session({
-        user,
-        content: [content], // Add the initial message here
-        AIresponse: '',
-      });
-    } else {
-      // If the session already exists, add the new content to it
-      session.content.push(content);
-    }
+    
+    const session = new Session({
+      user,
+      content: [content], 
+      AIresponse: '',
+    });
 
     const savedSession = await session.save();
 
