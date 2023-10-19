@@ -85,31 +85,35 @@ router.get('/sessions/:sessionId', async (req, res) => {
 
 router.post('/sessions/:sessionId/content', async (req, res) => {
   const { user, content } = req.body;
+  const sessionId = req.params.sessionId; // 从请求体中获取session_id
 
-  if (!user || !content) {
-    return res.status(400).json({ error: 'User ID and content are required' });
+  console.log("User (from request body):", user);
+  console.log("Session ID (from request parameter):", sessionId);
+  console.log("Content (from request body):", content);
+
+  if (!user || !sessionId || !content) {
+      return res.status(400).json({ error: 'User ID, Session ID, and content are required' });
   }
 
   try {
-    const AIresponse = await openAIChat([content]);
+      const AIresponse = await openAIChat([content]);
 
-    const session = new Session({
-      user,
-      content: content, 
-      AIresponse: AIresponse,
-    });
+      const session = new Session({
+          user,
+          content: content,
+          AIresponse: AIresponse,
+      });
 
-    const savedSession = await session.save();
+      const savedSession = await session.save();
 
-    const response = {
-      AIresponse: savedSession.AIresponse,
-    };
+      console.log("Saved Session Data:", savedSession); // 打印已保存的会话数据
 
-    res.status(201).json(AIresponse);
+      res.json({ message: AIresponse });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({message: error.message });
+      console.error(error);
+      res.status(500).json({ message: error.message });
   }
 });
+
 
 module.exports = router;

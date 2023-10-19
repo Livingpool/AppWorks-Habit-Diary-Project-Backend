@@ -21,6 +21,12 @@
 <body>
     <!-- 显示当前日期 -->
     <div id="current-date">日期：2023/10/14</div>
+
+    <label for="user">User：</label>
+    <input type="text" id="user" placeholder="輸入 User ID"><br><br>
+
+    <label for="session-id">Session ID：</label>
+    <input type="text" id="session-id" placeholder="輸入 Session ID"><br><br>
     
     <label for="daily-text">日记：</label><br>
     <!-- 使用<textarea>元素创建一个文本区域 -->
@@ -35,18 +41,28 @@
 
     <script>
         function submitDiary() {
-            const dailyText = document.getElementById("daily-text").value;
-            const text = { text: dailyText };
-            console.log('submit')
+    const user = document.getElementById("user").value;
+    const sessionId = document.getElementById("session-id").value;
+    const dailyText = document.getElementById("daily-text").value;
 
-            fetch('http://localhost:3000/process-diary', {
+    console.log("User:", user);
+    console.log("Session ID:", sessionId);
+    console.log("Daily Text:", dailyText);
+
+    const text = {
+        user: user,
+        session_id: sessionId,
+        content: dailyText
+    };
+
+            fetch('http://localhost:3000/sessions/' + sessionId + '/content', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(text),
-                mode: 'cors', // 启用 CORS
-                credentials: 'same-origin', // 发送认证信息（可以根据您的需求进行更改）
+                mode: 'cors',
+                credentials: 'same-origin',
             })
             .then(response => {
                 if (!response.ok) {
@@ -55,19 +71,16 @@
                 return response.json();
             })
             .then(data => {
-                // 将后端响应显示在回复文本区域中
-                document.getElementById("response-text").value = data.message; // 假设后端返回的是一个具有 "message" 属性的 JSON
+                console.log("Response Data:", data); // 打印响应数据
+                document.getElementById("response-text").value = data.message;
+
             })
             .catch(error => {
                 console.error('错误：', error);
             });
-            }
-
-
-
-
+        }
 
     </script>
-    
 </body>
 </html>
+
